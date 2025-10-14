@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary Meta Tags -->
+    <!-- TODO: Replace with your paper title and author names -->
+    <meta name="title" content="PAPER_TITLE - AUTHOR_NAMES" />
+    <!-- TODO: Write a compelling 150-160 character description of your research -->
+    <meta
+      name="description"
+      content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS"
+    />
+    <!-- TODO: Add 5-10 relevant keywords for your research area -->
+    <meta
+      name="keywords"
+      content="KEYWORD1, KEYWORD2, KEYWORD3, machine learning, computer vision, AI"
+    />
+    <!-- TODO: List all authors -->
+    <meta name="author" content="FIRST_AUTHOR_NAME, SECOND_AUTHOR_NAME" />
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content="English" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article" />
+    <!-- TODO: Replace with your institution or lab name -->
+    <meta property="og:site_name" content="INSTITUTION_OR_LAB_NAME" />
+    <!-- TODO: Same as paper title above -->
+    <meta property="og:title" content="PAPER_TITLE" />
+    <!-- TODO: Same as description above -->
+    <meta
+      property="og:description"
+      content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS"
+    />
+    <!-- TODO: Replace with your actual website URL -->
+    <meta
+      property="og:url"
+      content="https://YOUR_DOMAIN.com/YOUR_PROJECT_PAGE"
+    />
+    <!-- TODO: Create a 1200x630px preview image and update path -->
+    <meta
+      property="og:image"
+      content="https://YOUR_DOMAIN.com/static/images/social_preview.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="PAPER_TITLE - Research Preview" />
+    <meta
+      property="article:published_time"
+      content="2024-01-01T00:00:00.000Z"
+    />
+    <meta property="article:author" content="FIRST_AUTHOR_NAME" />
+    <meta property="article:section" content="Research" />
+    <meta property="article:tag" content="KEYWORD1" />
+    <meta property="article:tag" content="KEYWORD2" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <!-- TODO: Replace with your lab/institution Twitter handle -->
+    <meta name="twitter:site" content="@YOUR_TWITTER_HANDLE" />
+    <!-- TODO: Replace with first author's Twitter handle -->
+    <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE" />
+    <!-- TODO: Same as paper title above -->
+    <meta name="twitter:title" content="PAPER_TITLE" />
+    <!-- TODO: Same as description above -->
+    <meta
+      name="twitter:description"
+      content="BRIEF_DESCRIPTION_OF_YOUR_RESEARCH_CONTRIBUTION_AND_FINDINGS"
+    />
+    <!-- TODO: Same as social preview image above -->
+    <meta
+      name="twitter:image"
+      content="https://YOUR_DOMAIN.com/static/images/social_preview.png"
+    />
+    <meta name="twitter:image:alt" content="PAPER_TITLE - Research Preview" />
+
+    <!-- Academic/Research Specific -->
+    <meta name="citation_title" content="PAPER_TITLE" />
+    <meta
+      name="citation_author"
+      content="FIRST_AUTHOR_LAST, FIRST_AUTHOR_FIRST"
+    />
+    <meta
+      name="citation_author"
+      content="SECOND_AUTHOR_LAST, SECOND_AUTHOR_FIRST"
+    />
+    <meta name="citation_publication_date" content="2024" />
+    <meta name="citation_conference_title" content="CONFERENCE_NAME" />
+    <meta
+      name="citation_pdf_url"
+      content="https://YOUR_DOMAIN.com/static/pdfs/paper.pdf"
+    />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="msapplication-TileColor" content="#2563eb" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://ajax.googleapis.com" />
+    <link rel="preconnect" href="https://documentcloud.adobe.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <!-- TODO: Replace with your paper title and authors -->
+    <title>
+      ContextGen: Contextual Layout Anchoring for Identity-Consistent
+      Multi-Instance Generation - Ruihang Xu, Dewei Zhou, Fan Ma, Yi Yang |
+      ReLER, CCAI, Zhejiang University
+    </title>
+
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico" />
+    <link rel="apple-touch-icon" href="static/images/favicon.ico" />
+
+    <!-- Critical CSS - Load synchronously -->
+    <link rel="stylesheet" href="static/css/bulma.min.css" />
+    <link rel="stylesheet" href="static/css/index.css" />
+
+    <!-- Non-critical CSS - Load asynchronously -->
+    <link
+      rel="preload"
+      href="static/css/bulma-carousel.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="static/css/bulma-slider.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="static/css/fontawesome.all.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <link
+      rel="preload"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+
+    <!-- Fallback for browsers that don't support preload -->
+    <noscript>
+      <link rel="stylesheet" href="static/css/bulma-carousel.min.css" />
+      <link rel="stylesheet" href="static/css/bulma-slider.min.css" />
+      <link rel="stylesheet" href="static/css/fontawesome.all.min.css" />
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+      />
+    </noscript>
+
+    <!-- Fonts - Optimized loading -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Defer non-critical JavaScript -->
+    <script
+      defer
+      src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    ></script>
+    <script
+      defer
+      src="https://documentcloud.adobe.com/view-sdk/main.js"
+    ></script>
+    <script defer src="static/js/fontawesome.all.min.js"></script>
+    <script defer src="static/js/bulma-carousel.min.js"></script>
+    <script defer src="static/js/bulma-slider.min.js"></script>
+    <script defer src="static/js/index.js"></script>
+  </head>
+  <body>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                ContextGen: Contextual Layout Anchoring for Identity-Consistent
+                Multi-Instance Generation
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <!-- Paper authors -->
+                <span class="author-block">
+                  <a href="https://github.com/nenhang" target="_blank"
+                    >Ruihang Xu</a
+                  >,</span
+                >
+                <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?user=4C_OwWMAAAAJ&hl=en&oi=ao"
+                    target="_blank"
+                    >Dewei Zhou</a
+                  >,</span
+                >
+                <!-- <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?user=EQMVZh4AAAAJ&hl=en&oi=ao"
+                    target="_blank"
+                    >Mingwei Li</a
+                  ><sup>1</sup>,</span
+                > -->
+                <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?user=FyglsaAAAAAJ&hl=en&oi=ao"
+                    target="_blank"
+                    >Fan Ma</a
+                  >,</span
+                >
+                <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en"
+                    target="_blank"
+                    >Yi Yang</a
+                  ><sup>*</sup>,</span
+                >
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"
+                  >ReLER, CCAI, Zhejiang University</span
+                >
+                <span class="eql-cntrb"
+                  ><small><br /><sup>*</sup>Corresponding Author</small></span
+                >
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- Arxiv PDF link -->
+                  <span class="link-block">
+                    <a
+                      href="https://arxiv.org/abs/2510.11000"
+                      target="_blank"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Arxiv</span>
+                    </a>
+                  </span>
+
+                  <!-- Github link -->
+                  <span class="link-block">
+                    <a
+                      href="https://github.com/nenhang/ContextGen"
+                      target="_blank"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code (Coming Soon)</span>
+                    </a>
+                  </span>
+
+                  <!-- <span class="link-block">
+                    <a
+                      href="https://drive.google.com/file/d/1MNaKZmIyBXT7Ia_6DJ56vJ2TeB5o8m6c/view?usp=sharing"
+                      target="_blank"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Supplement Material</span>
+                    </a>
+                  </span> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaser video-->
+    <section class="hero teaser">
+      <div class="container is-max-desktop has-text-centered">
+        <div class="hero-body">
+          <img src="static/images/teaser.png" alt="MY ALT TEXT" />
+          <p>
+            <b>ContextGen</b> is a novel framework that uses user-provided
+            reference images to generate image with multiple instances, offering
+            <b>precise layout control</b> over their positions while
+            guaranteeing <b>perfect identity preservation</b>.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- End teaser video -->
+
+    <!-- Paper abstract -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Multi-instance image generation (MIG) remains a significant
+                challenge for modern diffusion models due to key limitations in
+                achieving precise control over object layout and preserving the
+                identity of multiple distinct subjects. To address these
+                limitations, we introduce <b>ContextGen</b>, a novel Diffusion
+                Transformer framework for multi-instance generation based on
+                contextual learning guided by both layout and reference images.
+                Our approach integrates two key technical contributions: a
+                <b>Contextual Layout Anchoring (CLA)</b> mechanism that
+                incorporates the composite layout image into the generation
+                context to robustly anchor the objects in their desired
+                positions, and <b>Identity Consistency Attention (ICA)</b>, a
+                innovative attention mechanism which leverages contextual
+                reference images to ensure the identity consistency of multiple
+                instances. Recognizing the lack of large-scale,
+                hierarchically-structured datasets for this task, we introduce
+                <b>IMIG-100K</b>, the first dataset with detailed layout and
+                identity annotations. Extensive experiments demonstrate that
+                ContextGen sets a new state-of-the-art, outperforming existing
+                methods in control precision, identity fidelity, and overall
+                visual quality.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End paper abstract -->
+
+    <section class="hero is-small is-light">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <h2 class="title is-3">Method</h2>
+            </div>
+          </div>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <img src="static/images/overview.png" alt="MY ALT TEXT" />
+              <h2 class="content has-text-justified">
+                <p>
+                  In our framework, a <b>composite layout image</b> is used for
+                  precise spatial control, this layout image can be either
+                  user-provided or automatically synthesized in setup stage.
+                  Then we integrate <b>reference images</b> to overcome the
+                  limitations of layout-only generation, such as instance
+                  information loss due to overlaps and dimensional compression.
+                  Our method introduces two key innovations:
+                  <b>(1) Contextual Layout Anchoring (CLA)</b>, which leverages
+                  contextual learning to anchor each instance at its desired
+                  position by incorporating the layout image into the generation
+                  context, thereby achieving robust layout control; and
+                  <b>(2) Identity Consistency Attention (ICA)</b>, a novel
+                  attention mechanism which propagates fine-grained information
+                  from contextual reference images to their respective desired
+                  locations, thereby preserving the identity of multiple
+                  instances. Complementing these mechanisms is an enhanced
+                  position indexing strategy that systematically organizes and
+                  differentiates multi-image relationships.
+                </p>
+              </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Image carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">
+            Identity-Consistent Subject-Driven Generation
+          </h2>
+          <h3 class="subtitle is-6">
+            <!-- 在 LAMICBench++ 上的 DEMO, 和现有开源 SOTA 和闭源商用模型对比 -->
+            DEMO on <b>LAMICBench++</b> comparing with existing open-source SOTA
+            on subject-driven generation and closed-source commercial models
+          </h3>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="item">
+                <!-- Your image here -->
+                <img
+                  src="static/images/lamic_demo_full.png"
+                  alt="MY ALT TEXT"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End image carousel -->
+
+    <!-- Image carousel -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">
+            Precise Layout Control for Multi-Instance Scenes
+          </h2>
+          <h3 class="subtitle is-6">
+            <!-- 在 COCO-MIG 上的 DEMO, 和现有开源 SOTA 模型的对比 -->
+            DEMO on <b>COCO-MIG Bench</b> comparing with existing open-source
+            SOTA on Layout-to-Image (L2I) generation<br />
+            Note: Red dashed boxes indicate the missing, merged, dislocated and
+            incorrectly attributed instances.
+          </h3>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="item">
+                <!-- Your image here -->
+                <img src="static/images/mig_demo_full.png" alt="MY ALT TEXT" />
+              </div>
+            </div>
+          </div>
+          <h3 class="subtitle is-6">
+            <!-- 在 COCO-MIG 上的 DEMO, 和现有开源 SOTA 模型的对比 -->
+            DEMO on <b>LayoutSam-Eval Bench</b> comparing with existing
+            open-source SOTA on Layout-to-Image (L2I) generation
+          </h3>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="item">
+                <!-- Your image here -->
+                <img
+                  src="static/images/layoutsam_demo_full.png"
+                  alt="MY ALT TEXT"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End image carousel -->
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">About IMIG-100K Dataset</h2>
+          <h3 class="subtitle is-6">
+            The <b>IMIG-100K</b> is a large-scale, structured dataset designed
+            for identity-consistent multi-instance generation, featuring three
+            progressive difficulty levels.
+          </h3>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <div class="item">
+                <!-- Your image here -->
+                <img src="static/images/dataset_sample.png" alt="MY ALT TEXT" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="dashed-line" />
+
+    <!-- <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">COCO-Position Results</h2>
+          <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+              <img src="static/images/cocopos.png" alt="MY ALT TEXT" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section> -->
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container">
+          <h2 class="title is-3">Quantitative Results on Benchmarks</h2>
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="item">
+              <!-- Your image here -->
+              <h2 class="subtitle has-text-justified">
+                <em><b>Quantitative Results on LAMICBench++.</b></em
+                ><br />
+                ITC: Image-text consistency; AES: Aesthetic quality; IPS: Object
+                feature similarity; IDS: Facial identity similarity.<br />
+                Layout-aware methods<sup>*</sup> use our pre-annotated bounding
+                boxes, while single-image-editing methods<sup>&#8224;</sup>
+                use our manually composited layout images.
+              </h2>
+              <img src="static/images/lamic_table.png" alt="" />
+            </div>
+            <div class="item">
+              <h2 class="subtitle has-text-justified">
+                <em
+                  ><b
+                    >Quantitative Results on COCO-MIG and LayoutSam-Eval
+                    Bench.</b
+                  ></em
+                ><br />
+                SR: Image-level success rate (all the instances are correctly
+                generated in position and color); I-SR: Instance-level success
+                rate; mIoU: Mean IoU between ground-truth and generated instance
+                positions; G-C: Global CLIP score; L-C: Local CLIP score.<br />
+                Spatial, Color, Texture, Shape: Instance-Level attribute
+                accuracy; CLIP: Global CLIP score; Pick: Global Pick score for
+                human preference.<br />
+                Image-guided methods<sup>*</sup> use our pre-generated images by
+                FLUX.1-Dev.
+              </h2>
+              <!-- Your image here -->
+              <img src="static/images/mig_layoutsam_table.png" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--End paper poster -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button
+            class="copy-bibtex-btn"
+            onclick="copyBibTeX()"
+            title="Copy BibTeX to clipboard"
+          >
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre
+          id="bibtex-code"
+        ><code>@article{xu2025contextgencontextuallayoutanchoring,
+      title={ContextGen: Contextual Layout Anchoring for Identity-Consistent Multi-Instance Generation}, 
+      author={Ruihang Xu and Dewei Zhou and Fan Ma and Yi Yang},
+      year={2025},
+      eprint={2510.11000},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2510.11000}, 
+}</code></pre>
+      </div>
+    </section>
+    <!--End BibTex citation -->
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This page was built using the
+                <a
+                  href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank"
+                  >Academic Project Page Template</a
+                >
+                which was adopted from the <a
+                  href="https://nerfies.github.io"
+                  target="_blank"
+                  >Nerfies</a
+                > project page. You are free to borrow the source code of this
+                website, we just ask that you link back to this page in the
+                footer. <br />
+                This website is licensed under a
+                <a
+                  rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/"
+                  target="_blank"
+                  >Creative Commons Attribution-ShareAlike 4.0 International
+                  License</a
+                >.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+  </body>
+</html>
