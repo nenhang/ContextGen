@@ -2,7 +2,7 @@
 
 [![Project Page](https://img.shields.io/badge/Project-Page-brightgreen)](https://nenhang.github.io/ContextGen/) [![Paper](https://img.shields.io/badge/arXiv-2510.11000-b31b1b)](https://arxiv.org/abs/2510.11000)
 
-![Teaser](docs/static/images/teaser.png)
+![Teaser](docs/static/images/teaser.webp)
 
 ## 📝 Introduction
 
