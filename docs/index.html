@@ -190,7 +190,9 @@
               <div class="is-size-5 publication-authors">
                 <!-- Paper authors -->
                 <span class="author-block">
-                  <a href="https://github.com/nenhang" target="_blank"
+                  <a
+                    href="https://scholar.google.com/citations?user=5ZDU6wwAAAAJ"
+                    target="_blank"
                     >Ruihang Xu</a
                   >,</span
                 >
@@ -220,7 +222,7 @@
                     href="https://scholar.google.com/citations?user=RMSuNFwAAAAJ&hl=en"
                     target="_blank"
                     >Yi Yang</a
-                  ><sup>*</sup>,</span
+                  ><sup>&#8224;</sup>,</span
                 >
               </div>
 
@@ -229,7 +231,9 @@
                   >ReLER, CCAI, Zhejiang University</span
                 >
                 <span class="eql-cntrb"
-                  ><small><br /><sup>*</sup>Corresponding Author</small></span
+                  ><small
+                    ><br /><sup>&#8224;</sup>Corresponding Author</small
+                  ></span
                 >
               </div>
 
@@ -238,12 +242,25 @@
                   <!-- Arxiv PDF link -->
                   <span class="link-block">
                     <a
-                      href="https://arxiv.org/abs/2510.11000"
+                      href="https://huggingface.co/papers/2510.11000"
                       target="_blank"
                       class="external-link button is-normal is-rounded is-dark"
                     >
                       <span class="icon">
                         <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a
+                      href="https://arxiv.org/abs/2510.11000"
+                      target="_blank"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
                       </span>
                       <span>Arxiv</span>
                     </a>
@@ -259,22 +276,41 @@
                       <span class="icon">
                         <i class="fab fa-github"></i>
                       </span>
-                      <span>Code (Coming Soon)</span>
+                      <span>Code</span>
                     </a>
                   </span>
 
-                  <!-- <span class="link-block">
+                  <!-- Dataset Code link -->
+                  <span class="link-block">
                     <a
-                      href="https://drive.google.com/file/d/1MNaKZmIyBXT7Ia_6DJ56vJ2TeB5o8m6c/view?usp=sharing"
+                      href="https://github.com/nenhang/IMIG-Source"
                       target="_blank"
                       class="external-link button is-normal is-rounded is-dark"
                     >
                       <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
+                        <i class="fa fa-database"></i>
                       </span>
-                      <span>Supplement Material</span>
+                      <span>Dataset</span>
                     </a>
-                  </span> -->
+                  </span>
+
+                  <!--   Huggingface Model link -->
+                  <span class="link-block">
+                    <a
+                      href="https://huggingface.co/ruihangxu/ContextGen"
+                      target="_blank"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <img
+                          src="static/images/icons8-hugging-face.svg"
+                          alt="Huggingface"
+                          style="width: 90%"
+                        />
+                      </span>
+                      <span>Model</span>
+                    </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -363,10 +399,10 @@
                   <b>(2) Identity Consistency Attention (ICA)</b>, a novel
                   attention mechanism which propagates fine-grained information
                   from contextual reference images to their respective desired
-                  locations, thereby preserving the identity of multiple
-                  instances. Complementing these mechanisms is an enhanced
-                  position indexing strategy that systematically organizes and
-                  differentiates multi-image relationships.
+                  locations, thereby preserving the detailed identity of
+                  multiple instances. Complementing these mechanisms is an
+                  enhanced position indexing strategy that systematically
+                  organizes and differentiates multi-image relationships.
                 </p>
               </h2>
             </div>
@@ -387,14 +423,23 @@
             DEMO on <b>LAMICBench++</b> comparing with existing open-source SOTA
             on subject-driven generation and closed-source commercial models
           </h3>
-          <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
+          <div id="results-carousel" class="carousel results-carousel">
+            <div class="column is-centered">
               <div class="item">
                 <!-- Your image here -->
-                <img
-                  src="static/images/lamic_demo_full.webp"
-                  alt="MY ALT TEXT"
-                />
+                <img src="static/images/lamic_demo_1.webp" alt="MY ALT TEXT" />
+              </div>
+            </div>
+            <div class="column is-centered">
+              <div class="item">
+                <!-- Your image here -->
+                <img src="static/images/lamic_demo_2.webp" alt="MY ALT TEXT" />
+              </div>
+            </div>
+            <div class="column is-centered">
+              <div class="item">
+                <!-- Your image here -->
+                <img src="static/images/lamic_demo_3.webp" alt="MY ALT TEXT" />
               </div>
             </div>
           </div>
@@ -418,7 +463,7 @@
             missing, merged, dislocated or incorrectly attributed instances.
           </h3>
           <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
+            <div class="column is-8">
               <div class="item">
                 <!-- Your image here -->
                 <img src="static/images/mig_demo_full.webp" alt="MY ALT TEXT" />
@@ -431,7 +476,7 @@
             open-source SOTA on Layout-to-Image (L2I) generation
           </h3>
           <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
+            <div class="column is-8">
               <div class="item">
                 <!-- Your image here -->
                 <img
@@ -456,7 +501,7 @@
             progressive difficulty levels.
           </h3>
           <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
+            <div class="column is-8">
               <div class="item">
                 <!-- Your image here -->
                 <img

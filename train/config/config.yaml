@@ -1,0 +1,53 @@
+flux_path: "/root/autodl-tmp/ckpt/FLUX.1-Kontext-dev/" # TODO: please set your own FLUX model path
+dtype: "bfloat16"
+
+train:
+  batch_size: 4
+  accumulate_grad_batches: 16
+  dataloader_workers: 31
+  print_every_n_steps: 200
+  save_interval: 200
+  sample_interval: 200
+  train_method: "sft" # "sft" or "dpo"
+
+  max_steps: -1
+  gradient_checkpointing: true
+  save_path: "/root/autodl-tmp/mig-flux/runs" # TODO: please set your own save path
+  model_name: "plus_lora512_middle"
+  process_visualize: false
+
+  dataset:
+    path: "/root/autodl-fs-data6/mig-flux/IMIG-Dataset" # TODO: please set your own dataset path
+    image_width: 768
+    reference_image_width: 512
+    text_drop_prob: 0.2
+    using_enhance_rate: 0.5
+    data_mix_ratio:
+      base: 15
+      composite: 1
+
+  dpo_config:
+    beta: 1250 # Only used if train_method is "dpo"
+
+  wandb:
+    project: "ContextGen" # WandB project name
+
+  lora_config:
+    r: 512
+    lora_alpha: 512
+    init_lora_weights: "gaussian"
+    target_modules: "(.*x_embedder|.*(?<!single_)transformer_blocks\\.[0-9]+\\.norm1\\.linear|.*(?<!single_)transformer_blocks\\.[0-9]+\\.attn\\.to_k|.*(?<!single_)transformer_blocks\\.[0-9]+\\.attn\\.to_q|.*(?<!single_)transformer_blocks\\.[0-9]+\\.attn\\.to_v|.*(?<!single_)transformer_blocks\\.[0-9]+\\.attn\\.to_out\\.0|.*(?<!single_)transformer_blocks\\.[0-9]+\\.ff\\.net\\.2|.*single_transformer_blocks\\.[0-9]+\\.norm\\.linear|.*single_transformer_blocks\\.[0-9]+\\.proj_mlp|.*single_transformer_blocks\\.[0-9]+\\.proj_out|.*single_transformer_blocks\\.[0-9]+\\.attn.to_k|.*single_transformer_blocks\\.[0-9]+\\.attn.to_q|.*single_transformer_blocks\\.[0-9]+\\.attn.to_v|.*single_transformer_blocks\\.[0-9]+\\.attn.to_out)"
+
+  optimizer:
+    ## You can choose either "Prodigy" or "AdamW" optimizer
+    ## Prodigy optimizer is more suitable for roughly sft fine-tuning
+    ## AdamW optimizer is more stable for fine-grained dpo fine-tuning
+    # type: "Prodigy"
+    # params:
+    #   lr: 1
+    #   use_bias_correction: true
+    #   safeguard_warmup: true
+    #   weight_decay: 0.01
+    type: "AdamW"
+    params:
+      lr: 1.0e-5

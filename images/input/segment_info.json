@@ -1,0 +1,94 @@
+[
+  {
+    "caption": "Two man, all wearing boxing gloves, are having a boxing match in an octagonal cage. The left one is in a grey sweater, while the right one is in a suit. The man in the background is yelling at them.",
+    "width": 1024,
+    "layout_image": "musk_zuckerberg/layout_musk_vs_zuckerberg.png",
+    "instances":[
+      {
+        "image": "musk_zuckerberg/trump_2.png",
+        "bbox": [346, 150, 668, 422],
+        "label": "man",
+        "phrase": "A man shouting in the background"
+      },
+      {
+        "image": "musk_zuckerberg/zuck.png",
+        "bbox": [182, 335, 430, 664],
+        "label": "man",
+        "phrase": "A man in a suit"
+      },
+      {
+        "image": "musk_zuckerberg/musk.png",
+        "bbox": [596, 338, 874, 685],
+        "label": "man",
+        "phrase": "A man in a grey sweater"
+      }
+    ]
+  },
+  {
+    "caption": "The man is wearing a headphone with his eyes closed when working on his laptop, seemingly immersed in the music.",
+    "width": 1024,
+    "layout_image": "man_headphone/man_wearing_earphone.png",
+    "instances": [
+      {
+        "image": "man_headphone/07_man.png",
+        "bbox": [488, 145, 769, 473],
+        "label": "man",
+        "phrase": "A man with eyes closed"
+      },
+      {
+        "image": "man_headphone/headphone.png",
+        "bbox": [505, 100, 775, 380],
+        "label": "headphone",
+        "phrase": "A black headphone"
+      }
+    ]
+  },
+  {
+    "caption": "A lion is sitting on an armchair, in a living room.",
+    "layout_image": "lion_armchair/lion_on_armchair.png",
+    "width": 512,
+    "instances": [
+      {
+        "image": "lion_armchair/lion.png",
+        "bbox": [143, 79, 350, 341],
+        "label": "lion",
+        "phrase": "A lion sitting"
+      },
+      {
+        "image": "lion_armchair/armchair.png",
+        "bbox": [117, 165, 387, 483],
+        "label": "armchair",
+        "phrase": "A brown armchair"
+      }
+    ]
+  },
+  {
+    "caption": "A crab is holding a leather handbag on sand.",
+    "layout_image": "crab_handbag/layout_crab_handbag.png",
+    "width": 768,
+    "instances": [
+        {
+          "label": "crab",
+          "image": "crab_handbag/04_crab_masked.png",
+          "bbox": [
+              351,
+              121,
+              690,
+              509
+          ],
+          "phrase": "A crab"
+        },
+        {
+          "label": "leather handbag",
+          "image": "crab_handbag/57_leather handbag_masked.png",
+          "bbox": [
+              112,
+              284,
+              443,
+              600
+          ],
+          "phrase": "A leather handbag"
+        }
+    ]
+  }
+]
