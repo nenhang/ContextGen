@@ -1,8 +1,8 @@
-<h1 align="center">
+<h1 style="text-align: center">
 ContextGen: Contextual Layout Anchoring </br> for Identity-Consistent Multi-Instance Generation
 </h1>
 
-<p align="center">
+<p style="text-align: center">
 <a href="https://scholar.google.com/citations?user=5ZDU6wwAAAAJ">Ruihang Xu</a>,
 <a href="https://scholar.google.com/citations?user=4C_OwWMAAAAJ">Dewei Zhou</a>,
 <a href="https://scholar.google.com/citations?user=FyglsaAAAAAJ">Fan Ma</a>,
@@ -10,7 +10,7 @@ ContextGen: Contextual Layout Anchoring </br> for Identity-Consistent Multi-Inst
 <span>ReLER, CCAI, Zhejiang University</span>
 </p>
 
-<p align="center">
+<p style="text-align: center">
 <a href="https://nenhang.github.io/ContextGen"><img src="https://img.shields.io/badge/Project-Page-brightgreen" alt="Project Page"></a>
 <a href="https://arxiv.org/abs/2510.11000"><img src="https://img.shields.io/badge/arXiv-2510.11000-b31b1b" alt="Paper"></a>
 <a href="https://github.com/nenhang/IMIG-Source"><img src="https://img.shields.io/badge/Dataset-Code-blue" alt="Dataset Code"></a>
@@ -125,15 +125,15 @@ nvm install --lts
 
 To build and run the demo, follow these steps:
 
-1. **Start Frontend:** In the first terminal, run the following commands:
+- **Start Frontend:** In the first terminal, run the following commands:
 
     ```bash
     cd gui/frontend
-    npm install
+    npm install # for the first time only
     npm run dev
     ```
 
-2. **Start Backend:** Open a second terminal and run the backend server:
+- **Start Backend:** Open a second terminal and run the backend server:
 
     ```bash
     python gui/backend/app.py
@@ -141,9 +141,11 @@ To build and run the demo, follow these steps:
 
 #### Accessing the GUI
 
-Once both the frontend and backend servers are successfully launched, if you are working on a remote server, port forwarding is required. Please ensure the frontend port (`127.0.0.1:5173`) and the backend port (`127.0.0.1:5000`) are **forwarded to the corresponding ports** on your local machine. You can then access the GUI via your local browser at `http://localhost:5173`. A screenshot of the GUI is shown below:
+Once both the frontend and backend servers are successfully launched, if you are working on a remote server, port forwarding is required. Please ensure the frontend port (`127.0.0.1:5173`) and the backend port (`127.0.0.1:5000`) are **forwarded to the corresponding ports** on your local machine. You can then access the GUI via your local browser at `http://localhost:5173`. Here’s a quick preview of the interface:
 
-<img src="docs/static/images/gui_demo.webp" alt="GUI Screenshot" width="75%" style="display:block; margin:auto;"/>
+<div style="text-align:center">
+  <img src="docs/static/images/gui_demo.gif" alt="GUI Demo" width="80%">
+</div>
 
 ## 💡 Tips
 
@@ -151,7 +153,7 @@ Once both the frontend and backend servers are successfully launched, if you are
 - To enhance visual quality and contextual consistency, we recommend using **a richer prompt** that includes detailed, interactive relationships between the instances.
 - If a generated case fails or exhibits poor quality, please try again with **a different random seed**.
 
-<h3 align="center">🎉 Enjoy Using ContextGen! 🎉</h3>
+<h3 style="text-align:center">🎉 Enjoy Using ContextGen! 🎉</h3>
 
 ## 📭 Citation
 
