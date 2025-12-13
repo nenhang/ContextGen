@@ -44,21 +44,21 @@
     ]
   },
   {
-    "caption": "A lion is sitting on an armchair, in a living room.",
-    "layout_image": "lion_armchair/lion_on_armchair.png",
-    "width": 512,
+    "caption": "The woman is happily playing with her dog, her head lowered and eyes fixed on the dog affectionately. The dog jumps up eagerly.",
+    "width": 1024,
+    "layout_image": "woman_dog/woman_dog.png",
     "instances": [
       {
-        "image": "lion_armchair/lion.png",
-        "bbox": [143, 79, 350, 341],
-        "label": "lion",
-        "phrase": "A lion sitting"
+        "image": "woman_dog/15_woman.png",
+        "bbox": [232, 138, 512, 425],
+        "label": "woman",
+        "phrase": "A woman with head lowered"
       },
       {
-        "image": "lion_armchair/armchair.png",
-        "bbox": [117, 165, 387, 483],
-        "label": "armchair",
-        "phrase": "A brown armchair"
+        "image": "woman_dog/12_dog.png",
+        "bbox": [642, 577, 897, 893],
+        "label": "dog",
+        "phrase": "A cute dog"
       }
     ]
   },

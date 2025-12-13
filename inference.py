@@ -16,7 +16,7 @@ from src.model.generate import generate, load_model
 # from src.utils.image_process import annotate
 
 KONTEXT_MODEL_PATH = os.getenv("KONTEXT_MODEL_PATH", "black-forest-labs/FLUX.1-Kontext-dev")
-ADAPTER_PATH = os.getenv("ADAPTER_PATH", "/root/autodl-tmp/ckpt/ruihangxu/ContextGen")
+ADAPTER_PATH = os.getenv("ADAPTER_PATH", "/root/autodl-tmp/ckpt/ContextGen")
 
 
 def main(args, gpu_id=0):
