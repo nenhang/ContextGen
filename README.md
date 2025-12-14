@@ -12,13 +12,15 @@ ContextGen: Contextual Layout Anchoring </br> for Identity-Consistent Multi-Inst
 
 <p align="center">
 <a href="https://nenhang.github.io/ContextGen"><img src="https://img.shields.io/badge/Project-Page-brightgreen" alt="Project Page"></a>
-<a href="https://arxiv.org/abs/2510.11000"><img src="https://img.shields.io/badge/arXiv-2510.11000-b31b1b" alt="Paper"></a>
+<a href="https://arxiv.org/abs/2510.11000"><img src="https://img.shields.io/badge/arXiv-Paper-b31b1b" alt="Paper"></a>
 <a href="https://github.com/nenhang/IMIG-Source"><img src="https://img.shields.io/badge/Dataset-Code-blue" alt="Dataset Code"></a>
 <a href="https://huggingface.co/ruihangxu/ContextGen"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Model&color=yellow"></a>
+<a href="https://huggingface.co/datasets/ruihangxu/IMIG-100K"><img src="https://img.shields.io/static/v1?label=%F0%9F%A4%97%20Hugging%20Face&message=Dataset&color=red"></a>
 </p>
 
 ## 🔥 Updates
 
+- 2025.12.14: Released the [IMIG-100K Dataset](https://huggingface.co/datasets/ruihangxu/IMIG-100K).
 - 2025.12.8: Released the inference code, training code, pretrained model weights, and GUI support for ContextGen.
 - 2025.10.19: Released the [IMIG-Dataset construction pipeline](https://github.com/nenhang/IMIG-Source).
 
