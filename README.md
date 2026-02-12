@@ -5,9 +5,10 @@ ContextGen: Contextual Layout Anchoring </br> for Identity-Consistent Multi-Inst
 <p align="center">
 <a href="https://scholar.google.com/citations?user=5ZDU6wwAAAAJ">Ruihang Xu</a>,
 <a href="https://scholar.google.com/citations?user=4C_OwWMAAAAJ">Dewei Zhou</a>,
-<a href="https://scholar.google.com/citations?user=FyglsaAAAAAJ">Fan Ma</a>,
-<a href="https://scholar.google.com/citations?user=RMSuNFwAAAAJ">Yi Yang</a><sup>&#8224;</sup> <br>
-<span>ReLER, CCAI, Zhejiang University</span>
+<a href="https://scholar.google.com/citations?user=FyglsaAAAAAJ">Fan Ma</a><sup>&#8224;</sup>,
+<a href="https://scholar.google.com/citations?user=RMSuNFwAAAAJ">Yi Yang</a><br>
+<span>ReLER, CCAI, Zhejiang University</span><br>
+<span><small><sup>&#8224;</sup>Corresponding Author</small></span>
 </p>
 
 <p align="center">
@@ -20,6 +21,7 @@ ContextGen: Contextual Layout Anchoring </br> for Identity-Consistent Multi-Inst
 
 ## 🔥 Updates
 
+- 2026.1.27: Our paper has been accepted by **ICLR 2026**! 🎉
 - 2025.12.14: Released the [IMIG-100K Dataset](https://huggingface.co/datasets/ruihangxu/IMIG-100K).
 - 2025.12.8: Released the inference code, training code, pretrained model weights, and GUI support for ContextGen.
 - 2025.10.19: Released the [IMIG-Dataset construction pipeline](https://github.com/nenhang/IMIG-Source).
