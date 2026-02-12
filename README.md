@@ -7,7 +7,7 @@ ContextGen: Contextual Layout Anchoring </br> for Identity-Consistent Multi-Inst
 <a href="https://scholar.google.com/citations?user=4C_OwWMAAAAJ">Dewei Zhou</a>,
 <a href="https://scholar.google.com/citations?user=FyglsaAAAAAJ">Fan Ma</a><sup>&#8224;</sup>,
 <a href="https://scholar.google.com/citations?user=RMSuNFwAAAAJ">Yi Yang</a><br>
-<span>ReLER, CCAI, Zhejiang University</span><br>
+<span>ReLER Lab, CCAI, Zhejiang University</span><br>
 </p>
 
 <p align="center">
