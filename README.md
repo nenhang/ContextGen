@@ -163,13 +163,12 @@ Once both the frontend and backend servers are successfully launched, if you are
 If you find ContextGen helpful to your research, please consider citing our paper:
 
 ```bibtex
-@article{xu2025contextgencontextuallayoutanchoring,
-      title={ContextGen: Contextual Layout Anchoring for Identity-Consistent Multi-Instance Generation},
-      author={Ruihang Xu and Dewei Zhou and Fan Ma and Yi Yang},
-      year={2025},
-      eprint={2510.11000},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2510.11000},
+@inproceedings{
+    xu2026contextgen,
+    title={ContextGen: Contextual Layout Anchoring for Identity-Consistent Multi-Instance Generation},
+    author={Ruihang Xu and Dewei Zhou and Fan Ma and Yi Yang},
+    booktitle={The Fourteenth International Conference on Learning Representations},
+    year={2026},
+    url={https://openreview.net/forum?id=wEuWyQnLY5}
 }
 ```
