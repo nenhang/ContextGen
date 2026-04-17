@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from "astro/types";
+interface Props extends HTMLAttributes<"video"> {
+  src: string;
+}
+
+const {
+  src,
+  controls = true,
+  loop = true,
+  playsinline = true,
+  muted = true,
+  autoplay = true,
+  ...videoProps
+} = Astro.props;
+---
+
+<video
+  class="aspect-video h-auto w-full rounded-lg"
+  src={src}
+  controls={controls}
+  loop={loop}
+  playsinline={playsinline}
+  muted={muted}
+  autoplay={autoplay}
+  {...videoProps}></video>

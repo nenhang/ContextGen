@@ -1,0 +1,16 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+}
+const { src, alt } = Astro.props;
+---
+
+<model-viewer
+  class="my-6 overflow-hidden rounded-lg bg-zinc-200 dark:bg-zinc-800"
+  alt={alt}
+  src={src}
+  camera-controls></model-viewer>
+<script>
+  import "@google/model-viewer";
+</script>

@@ -1,0 +1,83 @@
+---
+import Links from "../components/Links.astro";
+import Authors from "../components/Authors.astro";
+import Notes from "../components/Notes.astro";
+import type { Author, Note, Link } from "../types/types";
+
+import Table from "../components/Table.astro";
+
+import "../styles/global.css";
+import "katex/dist/katex-swap.css";
+
+import { Content, frontmatter } from "../paper.mdx";
+
+interface Frontmatter {
+  title: string;
+  authors: Author[];
+  conference?: string;
+  notes?: Note[];
+  links?: Link[];
+  description?: string;
+  favicon: string;
+  thumbnail?: string;
+  theme?: "device" | "light" | "dark";
+}
+
+const {
+  title,
+  authors,
+  conference,
+  notes,
+  links,
+  description,
+  favicon,
+  thumbnail,
+  theme = "device",
+} = frontmatter as Frontmatter;
+
+const baseUrl = import.meta.env.BASE_URL;
+const prefix = baseUrl.endsWith("/") ? baseUrl : baseUrl + "/";
+---
+
+<!doctype html>
+<html class="bg-white dark:bg-zinc-900" lang="en" data-theme={theme}>
+  <head>
+    <meta charset="UTF-8" />
+    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="icon" type="image/svg+xml" href={prefix + favicon} />
+
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:type" content="website" />
+    {thumbnail && <meta property="og:image" content={prefix + thumbnail} />}
+
+    <title>{title}</title>
+  </head>
+  <body
+    class="prose prose-lg prose-zinc dark:prose-invert prose-a:text-blue-500 prose-a:dark:text-blue-300 prose-a:no-underline prose-a:hover:underline prose-a:font-normal prose-code:bg-zinc-200 prose-code:dark:bg-zinc-800 prose-code:text-zinc-800 prose-code:dark:text-zinc-200 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-medium prose-code:before:content-none prose-code:after:content-none max-w-none pt-16 pb-6 font-(family-name:--font-noto-sans)"
+  >
+    <header class="mx-auto mb-12 max-w-[90rem] px-6 text-center">
+      <h1 class="text-5xl font-medium">{title}</h1>
+      <div class="flex flex-col items-center gap-6">
+        <Authors authors={authors} />
+        {conference && <div>{conference}</div>}
+        {notes && <Notes notes={notes} />}
+        {links && <Links links={links} />}
+      </div>
+    </header>
+    <main>
+      <Content components={{ table: Table }} />
+    </main>
+    <footer class="mx-auto max-w-[50rem] px-6 text-center">
+      <p class="prose-sm text-center">
+        Built with <a
+          href="https://research-template.roman.technology"
+          rel="nofollow">Roman Hauksson-Neill's project page template</a
+        >
+      </p>
+    </footer>
+  </body>
+</html>
