@@ -7,13 +7,13 @@ authors:
     url: https://scholar.google.com/citations?user=4C_OwWMAAAAJ
   - name: Fan Ma
     url: https://scholar.google.com/citations?user=FyglsaAAAAAJ
-    notes: ["†"]
+    notes: ["📧"]
   - name: Yi Yang
     url: https://scholar.google.com/citations?user=RMSuNFwAAAAJ
 notes:
   - symbol: ""
     text: "ReLER Lab, CCAI, Zhejiang University"
-  - symbol: "†"
+  - symbol: "📧"
     text: "Corresponding Author"
 links:
   - name: Paper
@@ -32,7 +32,7 @@ links:
     url: https://huggingface.co/datasets/ruihangxu/IMIG-100K
     icon: ri:database-2-line
 
-conference: "ICLR 2026"
+conference: "ICLR 2026 Poster"
 theme: device
 favicon: favicon.svg
 description: "ContextGen is a novel framework that uses user-provided reference images to generate images with multiple instances, offering layout control while guaranteeing identity preservation."
@@ -43,26 +43,30 @@ import HighlightedSection from "./components/HighlightedSection.astro";
 import SmallCaps from "./components/SmallCaps.astro";
 import Figure from "./components/Figure.astro";
 import Picture from "./components/Picture.astro";
-import Wide from "./components/Wide.astro";
 import Carousel from "./components/Carousel.astro";
 import CarouselSlide from "./components/CarouselSlide.astro";
 
 import teaser from "./assets/teaser.webp";
-import overview from "./assets/overview.png";
+import overview from "./assets/overview.webp";
 import datasetSample from "./assets/dataset_sample.webp";
+import datasetBase from "./assets/dataset_base.webp";
+import datasetComplex from "./assets/dataset_complex.webp";
+import datasetFlexible from "./assets/dataset_flexible.webp";
 import lamicDemo1 from "./assets/lamic_demo_1.webp";
 import lamicDemo2 from "./assets/lamic_demo_2.webp";
 import lamicDemo3 from "./assets/lamic_demo_3.webp";
-import lamicDemoFull from "./assets/lamic_demo_full.webp";
 import migDemoFull from "./assets/mig_demo_full.webp";
 import layoutsamDemoFull from "./assets/layoutsam_demo_full.webp";
-import lamicTable from "./assets/lamic_table.png";
-import migLayoutsamTable from "./assets/mig_layoutsam_table.png";
+import lamicTable from "./assets/lamic_table.webp";
+import migLayoutsamTable from "./assets/mig_layoutsam_table.webp";
 
 <Figure>
   <Picture slot="figure" src={teaser} alt="ContextGen teaser: multi-instance generation with layout control and identity preservation" priority />
-  <Fragment slot="caption"><SmallCaps>ContextGen</SmallCaps> uses user-provided reference images to generate images with multiple instances, offering precise layout control while guaranteeing identity preservation.</Fragment>
 </Figure>
+
+<p class="not-prose mx-auto -mt-4 mb-8 max-w-[50rem] text-center text-base font-medium text-zinc-700 dark:text-zinc-300">
+  <strong>ContextGen</strong> uses user-provided reference images to generate images with <strong>multiple instances</strong>, offering <strong>precise layout control</strong> while guaranteeing <strong>identity preservation</strong>.
+</p>
 
 <HighlightedSection>
 
@@ -112,25 +116,59 @@ An enhanced position indexing strategy systematically organizes and differentiat
 
 ## IMIG-100K Dataset
 
-<SmallCaps>IMIG-100K</SmallCaps> is a large-scale, structured dataset designed for identity-consistent multi-instance generation, featuring three progressive difficulty levels.
+<SmallCaps>IMIG-100K</SmallCaps> is a large-scale, structured dataset designed for identity-consistent multi-instance generation. It is organized into three progressive difficulty levels to cover a wide range of real-world scenarios.
 
 <Figure>
   <Picture slot="figure" src={datasetSample} alt="Sample images from the IMIG-100K dataset" />
-  <Fragment slot="caption">Samples from <SmallCaps>IMIG-100K</SmallCaps>, showing the three difficulty levels with layout and identity annotations.</Fragment>
+  <Fragment slot="caption">Overview of <SmallCaps>IMIG-100K</SmallCaps>, showing the three difficulty levels with layout and identity annotations.</Fragment>
+</Figure>
+
+**Basic Instance Composition** — foundational scenes with layout and identity annotations.
+
+<Figure>
+  <Picture slot="figure" src={datasetBase} alt="IMIG-100K Basic Part samples" />
+  <Fragment slot="caption">Basic Instance Composition.</Fragment>
+</Figure>
+
+**Complex Instance Interaction** — up to 8 instances per image with references covering occlusion, viewpoint rotation, and pose changes.
+
+<Figure>
+  <Picture slot="figure" src={datasetComplex} alt="IMIG-100K Complex Part samples" />
+  <Fragment slot="caption">Complex Instance Interaction.</Fragment>
+</Figure>
+
+**Flexible Composition with References** — instances are composited into scenes with significant appearance variation relative to their references, training the model to handle flexible identity transformations.
+
+<Figure>
+  <Picture slot="figure" src={datasetFlexible} alt="IMIG-100K Flexible Part samples" />
+  <Fragment slot="caption">Flexible Composition with References.</Fragment>
 </Figure>
 
 ## Quantitative Results
 
-<Carousel>
-  <CarouselSlide>
-    <p class="not-prose mb-2 text-center text-sm text-zinc-500 dark:text-zinc-400"><em><strong>Quantitative Results on LAMICBench++.</strong></em> ITC: Image-text consistency; AES: Aesthetic quality; IPS: Object feature similarity; IDS: Facial identity similarity. Layout-aware methods* use pre-annotated bounding boxes; single-image-editing methods† use manually composited layout images.</p>
-    <Picture src={lamicTable} alt="Quantitative results table on LAMICBench++" />
-  </CarouselSlide>
-  <CarouselSlide>
-    <p class="not-prose mb-2 text-center text-sm text-zinc-500 dark:text-zinc-400"><em><strong>Quantitative Results on COCO-MIG and LayoutSam-Eval Bench.</strong></em> SR: Image-level success rate; I-SR: Instance-level success rate; mIoU: Mean IoU; G-C: Global CLIP score; L-C: Local CLIP score. Image-guided methods* use pre-generated images by FLUX.1-Dev.</p>
-    <Picture src={migLayoutsamTable} alt="Quantitative results table on COCO-MIG and LayoutSam-Eval" />
-  </CarouselSlide>
-</Carousel>
+<Figure>
+  <Picture slot="figure" src={lamicTable} alt="Quantitative results table on LAMICBench++" />
+  <Fragment slot="caption"><em><strong>Quantitative Results on LAMICBench++.</strong></em> ITC: Image-text consistency; AES: Aesthetic quality; IPS: Object feature similarity; IDS: Facial identity similarity. Layout-aware methods* use pre-annotated bounding boxes; single-image-editing methods† use manually composited layout images.</Fragment>
+</Figure>
+
+<Figure>
+  <Picture slot="figure" src={migLayoutsamTable} alt="Quantitative results table on COCO-MIG and LayoutSam-Eval" />
+  <Fragment slot="caption"><em><strong>Quantitative Results on COCO-MIG and LayoutSam-Eval Bench.</strong></em> SR: Image-level success rate; I-SR: Instance-level success rate; mIoU: Mean IoU; G-C: Global CLIP score; L-C: Local CLIP score. Image-guided methods* use pre-generated images by FLUX.1-Dev.</Fragment>
+</Figure>
+
+## Interactive GUI
+
+<SmallCaps>ContextGen</SmallCaps> comes with an intuitive GUI — upload reference images, draw bounding boxes, and generate, all without writing any code.
+
+<div class="not-prose mx-auto my-6 max-w-[50rem] overflow-hidden rounded-xl shadow-lg">
+  <video autoplay loop muted playsinline class="w-full">
+    <source src="/ContextGen/gui_demo.mp4" type="video/mp4" />
+  </video>
+</div>
+
+<p class="not-prose mx-auto mt-2 mb-8 max-w-[50rem] text-center text-sm text-zinc-500 dark:text-zinc-400">
+  The <SmallCaps>ContextGen</SmallCaps> GUI demo — drag, drop, and generate with full layout and identity control.
+</p>
 
 ## BibTeX
 
@@ -140,7 +178,6 @@ An enhanced position indexing strategy systematically organizes and differentiat
     title={ContextGen: Contextual Layout Anchoring for Identity-Consistent Multi-Instance Generation},
     author={Ruihang Xu and Dewei Zhou and Fan Ma and Yi Yang},
     booktitle={The Fourteenth International Conference on Learning Representations},
-    year={2026},
-    url={https://openreview.net/forum?id=wEuWyQnLY5}
+    year={2026}
 }
 ```
