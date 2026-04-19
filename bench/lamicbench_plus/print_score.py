@@ -5,102 +5,52 @@ from pathlib import Path
 from tabulate import tabulate
 
 _SCRIPT_DIR = Path(__file__).resolve().parent
-_REPO_ROOT = _SCRIPT_DIR.parents[2]
+# This file lives at ``bench/lamicbench_plus/``; repo root is two levels up (…/bench → …/ContextGen).
+_REPO_ROOT = _SCRIPT_DIR.parents[1]
 
 BENCH_JSON = _SCRIPT_DIR / "lamicbench_plus_files" / "lamicbench_plus.json"
 
 models_dirs = [str(_REPO_ROOT / "bench" / "output")]
 PRINT_SPLIT_INSTANCE_TABLES = True
 
-
-def cal_scores(metrics, bench_data, incides: list | None = None):
-    if incides is not None:
-        filtered_metrics = []
-        for index in incides:
-            found = False
-            for item in metrics:
-                if item["index"] == index:
-                    filtered_metrics.append(item)
-                    found = True
-                    break
-            if not found:
-                print(f"Warning: Index {index} not found in metrics.")
-        metrics = filtered_metrics
-
-        filtered_bench_data = []
-        for index in incides:
-            found = False
-            for item in bench_data:
-                if item["index"] == index:
-                    filtered_bench_data.append(item)
-                    found = True
-                    break
-            if not found:
-                print(f"Warning: Index {index} not found in benchmark data.")
-        bench_data = filtered_bench_data
-
-    score_dict = {
-        "all": {
-            "improved_aes": 0.0,
-            "vqa_score": 0.0,
-            "face_similarity_score": 0.0,
-            "face_count": 0,
-            "object_similarity_score": 0.0,
-            "object_count": 0,
-            "total_samples": 0,
-            "total_items": 0,
-        },
-        2: {
-            "improved_aes": 0.0,
-            "vqa_score": 0.0,
-            "face_similarity_score": 0.0,
-            "face_count": 0,
-            "object_similarity_score": 0.0,
-            "object_count": 0,
-            "total_samples": 0,
-            "total_items": 0,
-        },
-        3: {
-            "improved_aes": 0.0,
-            "vqa_score": 0.0,
-            "face_similarity_score": 0.0,
-            "face_count": 0,
-            "object_similarity_score": 0.0,
-            "object_count": 0,
-            "total_samples": 0,
-            "total_items": 0,
-        },
-        4: {
-            "improved_aes": 0.0,
-            "vqa_score": 0.0,
-            "face_similarity_score": 0.0,
-            "face_count": 0,
-            "object_similarity_score": 0.0,
-            "object_count": 0,
-            "total_samples": 0,
-            "total_items": 0,
-        },
-        5: {
-            "improved_aes": 0.0,
-            "vqa_score": 0.0,
-            "face_similarity_score": 0.0,
-            "face_count": 0,
-            "object_similarity_score": 0.0,
-            "object_count": 0,
-            "total_samples": 0,
-            "total_items": 0,
-        },
-        6: {
-            "improved_aes": 0.0,
-            "vqa_score": 0.0,
-            "face_similarity_score": 0.0,
-            "face_count": 0,
-            "object_similarity_score": 0.0,
-            "object_count": 0,
-            "total_samples": 0,
-            "total_items": 0,
-        },
+def _empty_score_group() -> dict:
+    return {
+        "improved_aes": 0.0,
+        "vqa_score": 0.0,
+        "face_similarity_score": 0.0,
+        "face_count": 0,
+        "object_similarity_score": 0.0,
+        "object_count": 0,
+        "total_samples": 0,
+        "total_items": 0,
     }
+
+
+def _empty_score_dict() -> dict:
+    d: dict = {"all": _empty_score_group()}
+    for k in (2, 3, 4, 5, 6):
+        d[k] = _empty_score_group()
+    return d
+
+
+def _order_items_by_indices(items: list, indices: list[int], source_label: str) -> list:
+    """Reorder/filter items to match ``indices`` order; warn on missing index."""
+    by_index = {item["index"]: item for item in items}
+    out = []
+    for idx in indices:
+        if idx in by_index:
+            out.append(by_index[idx])
+        else:
+            print(f"Warning: Index {idx} not found in {source_label}.")
+    return out
+
+
+def cal_scores(metrics: list, bench_data: list, indices: list[int] | None = None):
+    if indices is not None:
+        metrics = _order_items_by_indices(metrics, indices, "metrics")
+        bench_data = _order_items_by_indices(bench_data, indices, "benchmark data")
+
+    score_dict = _empty_score_dict()
     assert len(metrics) == len(bench_data), (
         f"Metrics and benchmark data length mismatch: {len(metrics)} != {len(bench_data)}"
     )
@@ -109,35 +59,19 @@ def cal_scores(metrics, bench_data, incides: list | None = None):
             f"Index mismatch between metrics and benchmark data: {item['index']} != {bench_item['index']}"
         )
         num_references = len(bench_item["references"])
-        key = num_references if num_references <= 6 else 6
-        selected_samples = item["samples"]
+        ref_bucket = num_references if num_references <= 6 else 6
 
-        for sample in selected_samples:
-            score_dict["all"]["improved_aes"] += sample["improved_aes"]
-            score_dict["all"]["vqa_score"] += sample["vqa_score"]
-            score_dict["all"]["face_similarity_score"] += sum(
-                score["score"] for score in sample["face_similarity_scores"]
-            )
-            score_dict["all"]["face_count"] += len(sample["face_similarity_scores"])
-            score_dict["all"]["object_similarity_score"] += sum(
-                score["score"] for score in sample["object_similarity_scores"]
-            )
-            score_dict["all"]["object_count"] += len(sample["object_similarity_scores"])
-            score_dict["all"]["total_samples"] += 1
+        for sample in item["samples"]:
+            for bucket in (score_dict["all"], score_dict[ref_bucket]):
+                bucket["improved_aes"] += sample["improved_aes"]
+                bucket["vqa_score"] += sample["vqa_score"]
+                bucket["face_similarity_score"] += sum(s["score"] for s in sample["face_similarity_scores"])
+                bucket["face_count"] += len(sample["face_similarity_scores"])
+                bucket["object_similarity_score"] += sum(s["score"] for s in sample["object_similarity_scores"])
+                bucket["object_count"] += len(sample["object_similarity_scores"])
+                bucket["total_samples"] += 1
 
-            score_dict[key]["improved_aes"] += sample["improved_aes"]
-            score_dict[key]["vqa_score"] += sample["vqa_score"]
-            score_dict[key]["face_similarity_score"] += sum(
-                score["score"] for score in sample["face_similarity_scores"]
-            )
-            score_dict[key]["face_count"] += len(sample["face_similarity_scores"])
-            score_dict[key]["object_similarity_score"] += sum(
-                score["score"] for score in sample["object_similarity_scores"]
-            )
-            score_dict[key]["object_count"] += len(sample["object_similarity_scores"])
-            score_dict[key]["total_samples"] += 1
-
-        score_dict[key]["total_items"] += 1
+        score_dict[ref_bucket]["total_items"] += 1
         score_dict["all"]["total_items"] += 1
 
     return score_dict
@@ -209,16 +143,16 @@ def calculate_overall_average(scores):
     ) / 4
 
 
-def validate_metric_benchmark_alignment(metrics, bench_indices, model_name):
+def validate_metric_benchmark_alignment(metrics, benchmark_indices: list[int], model_name: str):
     metric_indices = [item.get("index") for item in metrics if isinstance(item, dict)]
     metric_index_set = set(metric_indices)
-    bench_index_set = set(bench_indices)
+    bench_set = set(benchmark_indices)
 
     duplicate_count = len(metric_indices) - len(metric_index_set)
     if duplicate_count > 0:
         print(f"[{model_name}] Warning: found {duplicate_count} duplicate metric indices.")
 
-    missing_in_metrics = sorted(bench_index_set - metric_index_set)
+    missing_in_metrics = sorted(bench_set - metric_index_set)
     if missing_in_metrics:
         print(
             f"[{model_name}] Warning: {len(missing_in_metrics)} benchmark indices are missing in metrics. "
@@ -244,7 +178,8 @@ def build_table_rows(sorted_models, group_key, model_name_dict):
     return table_data
 
 
-def load_selected_subset(path: Path):
+def load_benchmark_json(path: Path) -> tuple[list, list[int]]:
+    """Load benchmark items (sorted by index) and the list of indices for alignment with metrics."""
     with open(path) as f:
         data = json.load(f)
     if isinstance(data, list):
@@ -254,25 +189,27 @@ def load_selected_subset(path: Path):
     else:
         raise ValueError(f"Expected a JSON array or an object with key 'benchmark', got {type(data).__name__}")
     bench_data = sorted(bench_data, key=lambda x: x["index"])
-    indices = [b["index"] for b in bench_data]
-    return bench_data, indices
+    benchmark_indices = [b["index"] for b in bench_data]
+    return bench_data, benchmark_indices
 
 
 if __name__ == "__main__":
     if not BENCH_JSON.is_file():
-        raise SystemExit(f"Missing {BENCH_JSON}. Run summurize_selected_indices.py first to generate the subset file.")
+        raise SystemExit(f"Missing benchmark file: {BENCH_JSON}")
 
-    bench_data, selected_indices = load_selected_subset(BENCH_JSON)
-    print(f"Loaded selected subset: {len(bench_data)} items from {BENCH_JSON.name}")
+    bench_data, benchmark_indices = load_benchmark_json(BENCH_JSON)
+    print(f"Loaded benchmark: {len(bench_data)} items from {BENCH_JSON.name}")
 
     all_results = {}
 
-    if isinstance(models_dirs, str):
-        models_dir_list = [models_dirs]
-    else:
-        models_dir_list = models_dirs
+    models_dir_list = [models_dirs] if isinstance(models_dirs, str) else models_dirs
 
     for models_dir in models_dir_list:
+        if not os.path.isdir(models_dir):
+            raise SystemExit(
+                f"Output scan directory does not exist: {models_dir}\n"
+                f"(expected under repo root {_REPO_ROOT}; create bench/output or set models_dirs in print_score.py)"
+            )
         for model_name in os.listdir(models_dir):
             model_path = os.path.join(models_dir, model_name)
             if not os.path.isdir(model_path):
@@ -282,8 +219,8 @@ if __name__ == "__main__":
                 continue
             with open(metrics_path) as f:
                 metrics = json.load(f)
-            validate_metric_benchmark_alignment(metrics, selected_indices, model_name)
-            raw_scores = cal_scores(metrics=metrics, bench_data=bench_data, incides=selected_indices)
+            validate_metric_benchmark_alignment(metrics, benchmark_indices, model_name)
+            raw_scores = cal_scores(metrics=metrics, bench_data=bench_data, indices=benchmark_indices)
             avg_scores = calculate_averages(raw_scores)
             avg_scores["2-3"] = merge_groups(raw_scores, [2, 3])
             avg_scores["4-5"] = merge_groups(raw_scores, [4, 5, 6])

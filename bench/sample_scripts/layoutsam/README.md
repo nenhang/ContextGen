@@ -14,7 +14,13 @@ python run_sample_bench_from_pack.py
 
 This uses default `./layoutsam_reference_pack` and writes outputs under `bench/output/layoutsam/`.
 
-Then run your evaluation pipeline to obtain final LayoutSAM metrics.
+Then run evaluation (MiniCPM-V QA + CLIP / PickScore) in one script:
+
+```bash
+python layoutsam_eval.py
+```
+
+Runs MiniCPM-V QA first, then CLIP/Pick on the same `--sampled-bench` JSON. Override paths with `--generate-path` / `--sampled-bench`. Model and dataset IDs are constants at the top of `layoutsam_eval.py`.
 
 ## Full pipeline (rebuild references from scratch)
 
@@ -48,3 +54,4 @@ You can override config fields via CLI flags (for example `--data-dir`, `--konte
 - `run_layoutsam.py`: full CLI pipeline.
 - `pipeline/reference.py`: segment generation, bbox validation, benchmark filtering.
 - `pipeline/sample_bench.py`: full-scene sampling.
+- `layoutsam_eval.py`: MiniCPM-V region QA and CLIP/PickScore metrics on generated images.
