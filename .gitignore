@@ -251,6 +251,7 @@ $RECYCLE.BIN/
 # ides
 .idea/
 .vscode/
+.claude/
 
 # running production
 runs
@@ -268,5 +269,11 @@ train/config/*.yaml
 # temp output files
 /temp
 /debug
-third_party/GroundingDINO/groundingdino/config/GroundingDINO_SwinT_OGC.py
-third_party/GroundingDINO/groundingdino/config/GroundingDINO_SwinB_cfg.py
+
+# benchmark zip files
+/bench/lamicbench_plus/lamicbench_plus_files
+/bench/sample_scripts/lamicbench_plus/lamicbench_layout_pack
+/bench/sample_scripts/layoutsam/layoutsam_reference_pack
+/bench/sample_scripts/cocomig/cocomig_reference_pack
+
+/bench/output

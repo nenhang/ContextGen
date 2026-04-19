@@ -27,7 +27,7 @@ ContextGen: Contextual Layout Anchoring </br> for Identity-Consistent Multi-Inst
 
 ## 📝 Introduction
 
-![Teaser](docs/static/images/teaser.webp)
+![Teaser](assets/teaser.webp)
 
 **ContextGen** is a novel framework that uses **user-provided reference images** to generate image with multiple instances, offering **layout control** over their positions while guaranteeing **identity preservation**.
 
@@ -91,6 +91,10 @@ Then configure the training parameters in `train/config/config.yaml` and run:
 python src/model/train.py
 ```
 
+### Benchmark and Evaluation
+
+We have released **LAMICBench++** evaluation support and **sample generation scripts** for three benchmarks: **LAMICBench++**, **COCO-MIG**, and **LayoutSAM**. For LAMICBench++ evaluation scripts and metric aggregation, see [`bench/lamicbench_plus/README.md`](bench/lamicbench_plus/README.md). You can find the sample generation entry points and reproduction notes in [`bench/sample_scripts/README.md`](bench/sample_scripts/README.md).
+
 ### GUI Support
 
 We provide a simple GUI built with [Vite](https://vite.dev) and [React](https://react.dev) for easier interaction.
@@ -147,12 +151,12 @@ To build and run the demo, follow these steps:
 Once both the frontend and backend servers are successfully launched, if you are working on a remote server, port forwarding is required. Please ensure the frontend port (`127.0.0.1:5173`) and the backend port (`127.0.0.1:5000`) are **forwarded to the corresponding ports** on your local machine. You can then access the GUI via your local browser at `http://localhost:5173`. Here’s a quick preview of the interface:
 
 <div align="center">
-  <img src="docs/static/images/gui_demo.gif" alt="GUI Demo" width="80%">
+  <img src="assets/gui_demo.gif" alt="GUI Demo" width="80%">
 </div>
 
 ## 💡 Tips
 
-- For better identity rendering and visual quality, we recommend using **a middle resolution (e.g., 768x768 or 512x512)**. This strikes a balance, as higher resolutions may compromise identity consistency, while lower resolutions can introduce artifacts.
+- For better identity rendering and visual quality, we recommend using **a middle resolution (e.g., 768x768)**. This strikes a balance, as higher resolutions may compromise identity consistency, while lower resolutions can introduce artifacts.
 - To enhance visual quality and contextual consistency, we recommend using **a richer prompt** that includes detailed, interactive relationships between the instances.
 - If a generated case fails or exhibits poor quality, please try again with **a different random seed**.
 
@@ -168,7 +172,6 @@ If you find ContextGen helpful to your research, please consider citing our pape
     title={ContextGen: Contextual Layout Anchoring for Identity-Consistent Multi-Instance Generation},
     author={Ruihang Xu and Dewei Zhou and Fan Ma and Yi Yang},
     booktitle={The Fourteenth International Conference on Learning Representations},
-    year={2026},
-    url={https://openreview.net/forum?id=wEuWyQnLY5}
+    year={2026}
 }
 ```

@@ -1,0 +1,11 @@
+accelerate
+insightface
+numpy
+onnxruntime-gpu
+opencv-python
+Pillow
+python-dotenv
+tabulate
+torch
+tqdm
+transformers>=5.0.0
