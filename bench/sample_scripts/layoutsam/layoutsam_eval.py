@@ -10,6 +10,7 @@ Model / dataset Hugging Face ids are set as module-level constants (``MINICPM_MO
 
 from __future__ import annotations
 
+import argparse
 import ast
 import json
 import math
@@ -37,7 +38,6 @@ _REPO_ROOT = _SCRIPT_DIR.parents[3]
 
 DEFAULT_GENERATE_PATH = _REPO_ROOT / "bench" / "output" / "layoutsam" / "images"
 DEFAULT_SAMPLED_BENCH = _SCRIPT_DIR / "layoutsam_reference_pack" / "layoutsam_sampled.json"
-DEFAULT_CLIP_TEMP_DIR = _REPO_ROOT / "bench" / "output" / "layoutsam" / "_clip_pick_temp"
 
 # ---------------------------------------------------------------------------
 # Model / dataset ids (edit here)
@@ -63,7 +63,7 @@ def chunk_evenly(items, num_chunks):
 
 
 # ---------------------------------------------------------------------------
-# Dataset (from layoutsam_dataset.py)
+# Dataset (HF LayoutSAM-eval + bbox/caption fields for MiniCPM)
 # ---------------------------------------------------------------------------
 
 
@@ -208,11 +208,7 @@ def run_clip_pick(
     generated_images_dir: str,
     metadata_file: str | None = None,
     metadata_file_with_scores: str | None = None,
-    temp_dir: Path | None = None,
 ) -> None:
-    temp_dir = temp_dir or DEFAULT_CLIP_TEMP_DIR
-    os.makedirs(temp_dir, exist_ok=True)
-
     if metadata_file is None:
         metadata_file = str(Path(generated_images_dir).parent / "minicpm-vqa.json")
     if metadata_file_with_scores is None:
@@ -222,9 +218,7 @@ def run_clip_pick(
         file_info = json.load(f)
 
     with open(benchmark_file, "r") as f:
-        prompts = json.load(f)
-
-    prompts = sorted(prompts, key=lambda x: x["index"])
+        prompts = sorted(json.load(f), key=lambda x: x["index"])
     valid_prompts = [p for p in prompts if f"{p['index']:04d}.jpg" in file_info]
 
     gpu_count = torch.cuda.device_count()
@@ -259,15 +253,15 @@ def run_clip_pick(
     else:
         print("No valid samples were scored.")
 
-    prompts_with_scores = OrderedDict(sorted(file_info.items(), key=lambda kv: int(kv[0].split(".")[0])))
+    out = OrderedDict(sorted(file_info.items(), key=lambda kv: int(kv[0].split(".")[0])))
 
     with open(metadata_file_with_scores, "w") as f:
-        json.dump(prompts_with_scores, f, indent=2)
+        json.dump(out, f, indent=2)
     print(f"[clip/pick] Wrote {metadata_file_with_scores}")
 
 
 # ---------------------------------------------------------------------------
-# MiniCPM-V eval (layoutsam_eval.py logic unchanged)
+# MiniCPM-V eval
 # ---------------------------------------------------------------------------
 
 
@@ -512,8 +506,7 @@ def run_minicpm_eval(
                 shard_result = future.result()
                 image_stats.update(shard_result)
 
-    sorted_items = sorted(image_stats.items(), key=lambda kv: filename_to_index(kv[0]))
-    sorted_image_stats = OrderedDict(sorted_items)
+    sorted_image_stats = OrderedDict(sorted(image_stats.items(), key=lambda kv: filename_to_index(kv[0])))
 
     with open(save_json_path, "w", encoding="utf-8") as json_file:
         json.dump(sorted_image_stats, json_file, indent=4)
@@ -524,7 +517,6 @@ def run_minicpm_eval(
     total_score_color = 0.0
     total_score_texture = 0.0
     total_score_shape = 0.0
-    miss_match = 0
 
     for _, value in sorted_image_stats.items():
         total_num += value["bbox_count"]
@@ -533,15 +525,6 @@ def run_minicpm_eval(
         total_score_texture += value["score_texture"]
         total_score_shape += value["score_shape"]
 
-        if (
-            value["bbox_count"] != value["score_spatial"]
-            or value["bbox_count"] != value["score_color"]
-            or value["bbox_count"] != value["score_texture"]
-            or value["bbox_count"] != value["score_shape"]
-        ):
-            miss_match += 1
-
-    print("mismatch image num:", miss_match)
     if total_num == 0:
         raise RuntimeError("No valid bbox evaluated. Cannot compute average scores.")
 
@@ -562,8 +545,6 @@ def run_minicpm_eval(
 
 
 def main():
-    import argparse
-
     p = argparse.ArgumentParser(description="LayoutSAM: MiniCPM-V QA, then CLIP/PickScore on the same bench JSON")
     p.add_argument(
         "--generate-path",
