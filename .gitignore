@@ -239,7 +239,7 @@ $RECYCLE.BIN/
 !images/input/**/*.png
 !images/input/**/*.jpg
 !images/input/**/*.jpeg
-!docs/static/**/*
+!assets/**/*
 
 # tensorboard
 *.tfevents.*
